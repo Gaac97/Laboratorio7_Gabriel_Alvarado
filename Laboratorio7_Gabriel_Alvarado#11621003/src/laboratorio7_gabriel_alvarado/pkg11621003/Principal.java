@@ -181,7 +181,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 120, 40));
+        jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 120, 40));
 
         jButton3.setText("Agregar orden");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -268,18 +268,17 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-   Orden o = new Orden();
+   String cliente;
+   String cajero;
+   cliente = tf_nombreCliente.getText();
+   cajero = cb_cajero.getSelectedItem().toString();
+   
+   ListOrden.add(new Orden(cajero, cliente));
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
       int i = cb_productos.getSelectedIndex();
-        String cajero;
-      String cliente;
-      Productos p;
-      cliente = tf_nombreCliente.getText();
-      cajero = cb_cajero.getSelectedItem().toString();
-    
-     ListOrden.add(new Orden(cajero, cliente));
+     ListOrden.get(i).getListProductos().add(ListProductos.get(i));
      
     }//GEN-LAST:event_jButton3ActionPerformed
 
