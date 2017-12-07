@@ -14,5 +14,41 @@ import java.util.ArrayList;
 public class Cajero {
 public String nombre;
 public String id;
-public ArrayList <Productos> ListOrdenes = new ArrayList();
+public ArrayList <Orden> ListOrdenes = new ArrayList();
+
+    public Cajero(String nombre, String id) {
+        this.nombre = nombre;
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ArrayList<Orden> getListOrdenes() {
+        return ListOrdenes;
+    }
+
+    public void setListOrdenes(ArrayList<Orden> ListOrdenes) {
+        this.ListOrdenes = ListOrdenes;
+    }
+
+    @Override
+    public String toString() {
+        return "Cajero{" + "nombre=" + nombre + ", id=" + id + ", ListOrdenes=" + ListOrdenes + '}';
+    }
+    
+
 }

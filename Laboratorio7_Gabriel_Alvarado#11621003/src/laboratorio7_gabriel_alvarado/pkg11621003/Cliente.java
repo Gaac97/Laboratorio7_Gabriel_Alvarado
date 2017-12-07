@@ -14,11 +14,12 @@ import java.util.ArrayList;
 public class Cliente {
     public String nombre;
     public String edad;
-    public ArrayList<Orden> ListOrdenes = new ArrayList();
+    public Orden orden;
 
-    public Cliente(String nombre, String edad) {
+    public Cliente(String nombre, String edad, Orden orden) {
         this.nombre = nombre;
         this.edad = edad;
+        this.orden = orden;
     }
 
     public String getNombre() {
@@ -37,18 +38,20 @@ public class Cliente {
         this.edad = edad;
     }
 
-    public ArrayList<Orden> getListOrdenes() {
-        return ListOrdenes;
+    public String getOrden() {
+        return orden;
     }
 
-    public void setListOrdenes(ArrayList<Orden> ListOrdenes) {
-        this.ListOrdenes = ListOrdenes;
+    public void setOrden(String orden) {
+        this.orden = orden;
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "nombre=" + nombre + ", edad=" + edad + ", ListOrdenes=" + ListOrdenes + '}';
+        return "Cliente{" + "nombre=" + nombre + ", edad=" + edad + ", orden=" + orden + '}';
     }
+
+   
     
     
 }

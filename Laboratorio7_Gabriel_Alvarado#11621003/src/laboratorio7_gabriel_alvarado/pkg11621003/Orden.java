@@ -19,6 +19,7 @@ public class Orden {
     public Orden(String cajero, String cliente) {
         this.cajero = cajero;
         this.cliente = cliente;
+        
     }
 
     public String getCajero() {
