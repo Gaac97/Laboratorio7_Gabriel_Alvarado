@@ -18,14 +18,26 @@ public class Cajero extends Thread {
     public Principal principal = new Principal();
     public Compra mostrar = new Compra();
     public Orden o;
-    boolean vive=true;
+    boolean vive = true;
     public String nombre;
     public String id;
     public ArrayList<Orden> ListOrdenes = new ArrayList();
 
+    public Cajero() {
+    }
+
     public Cajero(String nombre, String id) {
         this.nombre = nombre;
         this.id = id;
+
+    }
+
+    public ArrayList<Orden> getListOrdenes() {
+        return ListOrdenes;
+    }
+
+    public void setListOrdenes(ArrayList<Orden> ListOrdenes) {
+        this.ListOrdenes = ListOrdenes;
     }
 
     public String getNombre() {
@@ -45,32 +57,34 @@ public class Cajero extends Thread {
     }
 
     @Override
+    public String toString() {
+        return nombre;
+    }
+
+    @Override
     public void run() {
         Productos p = new Productos();
         Cliente c = new Cliente();
         mostrar.setVisible(true);
         mostrar.nombreCajero.setText(nombre);
         mostrar.NombreCliente.setText(c.getNombre());
+        mostrar.tf_proceso.setText(p.getNombre());
         int tiempo = p.getTiempo();
-        
+
         JTable tablaTemporal = new JTable();
-        Compra mostracion = new Compra();
+
         DefaultTableModel modelo = (DefaultTableModel) mostrar.jt_tabla.getModel();
-        DefaultTableModel borrar = (DefaultTableModel) mostrar.jt_tabla.getModel();
         while (true) {
-            while (mostrar.jt_tabla.getRowCount() > 0) {
-                modelo.removeRow(0);
-            }
-            mostrar.jt_tabla.setModel(modelo);
+
             for (Orden t1 : ListOrdenes) {
-                if (t1.equals(nombre)) {
-                    Object[] fila = {t1.cajero, t1.cliente,p.tiempo};
-                    modelo.addRow(fila);
-                }
+
+                Object[] fila = {t1.cajero, t1.cliente, t1.getListProductos()};
+                modelo.addRow(fila);
+
             }
             mostrar.jt_tabla.setModel(modelo);
             try {
-                Thread.sleep(3000);
+                Thread.sleep(5000);
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }

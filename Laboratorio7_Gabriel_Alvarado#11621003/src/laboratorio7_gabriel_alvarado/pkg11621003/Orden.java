@@ -16,11 +16,16 @@ public class Orden {
     public String cliente;
     public ArrayList<Productos> ListProductos= new ArrayList();
 
+    public Orden() {
+    }
+
     public Orden(String cajero, String cliente) {
         this.cajero = cajero;
         this.cliente = cliente;
-        
+       
     }
+
+   
 
     public String getCajero() {
         return cajero;
@@ -42,7 +47,7 @@ public class Orden {
         return ListProductos;
     }
 
-    public void setListProductos(ArrayList<Productos> ListProductos) {
+    public void setListProductos(Productos L) {
         this.ListProductos = ListProductos;
     }
 

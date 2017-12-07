@@ -60,6 +60,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         tf_edadCliente = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +123,12 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel8.setText("Nombre de cliente");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
+
+        tf_nombreCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_nombreClienteActionPerformed(evt);
+            }
+        });
         jPanel3.add(tf_nombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 141, -1));
 
         jLabel9.setText("Productos");
@@ -143,6 +150,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.add(cb_cajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 100, -1));
 
         jButton6.setText("Realizar compra");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 370, -1, -1));
 
         jButton7.setText("Cargar");
@@ -171,6 +183,14 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 120, 40));
 
+        jButton3.setText("Agregar orden");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
+
         jTabbedPane1.addTab("Crear cliente", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,37 +208,48 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String nombre;
-    int precio;
-    int tiempo;
-    nombre = tf_producto.getText();
-    precio = Integer.parseInt(tf_precio.getText());
-    tiempo = Integer.parseInt(tf_tiempo.getText());
-    ListProductos.add(new Productos(nombre, precio, tiempo));
+        String nombre;
+        int precio;
+        int tiempo;
+        nombre = tf_producto.getText();
+        precio = Integer.parseInt(tf_precio.getText());
+        tiempo = Integer.parseInt(tf_tiempo.getText());
+        ListProductos.add(new Productos(nombre, precio, tiempo));
+
+    //
+        tf_producto.setText("");
+        tf_precio.setText("");
+        tf_tiempo.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    String nombre;
-    String id;
-    nombre = tf_nombrec.getText();
-    id = tf_id.getText();
-    ListCajero.add(new Cajero(nombre, id));
+        String nombre;
+        String id;
+        nombre = tf_nombrec.getText();
+        id = tf_id.getText();
+        Cajero c = new Cajero(nombre, id);
+        ListCajero.add(c);
+        
+        // 
+        tf_nombrec.setText("");
+        tf_id.setText("");
+        c.start();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        DefaultComboBoxModel model = (DefaultComboBoxModel)cb_productos.getModel();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cb_productos.getModel();
         for (Productos t : ListProductos) {
             model.addElement(t);
         }
-       cb_productos.setModel(model);
+        cb_productos.setModel(model);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-          DefaultComboBoxModel model = (DefaultComboBoxModel)cb_cajero.getModel();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cb_cajero.getModel();
         for (Cajero q : ListCajero) {
             model.addElement(q);
         }
-       cb_cajero.setModel(model);
+        cb_cajero.setModel(model);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void tf_edadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_edadClienteActionPerformed
@@ -226,15 +257,35 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_edadClienteActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-    String nombre;
-    int edad;
-   String cajero = cb_cajero.getSelectedItem().toString();
-   nombre = tf_nombreCliente.getText();
-    edad = Integer.parseInt(tf_edadCliente.getText());
-    Orden o = new Orden(cajero, nombre);
-    ListCliente.add(new Cliente(nombre, cajero, o));
-    
+        String nombre;
+        int edad;
+        String cajero = cb_cajero.getSelectedItem().toString();
+        nombre = tf_nombreCliente.getText();
+        edad = Integer.parseInt(tf_edadCliente.getText());
+        Orden o = new Orden(cajero, nombre);
+        ListCliente.add(new Cliente(nombre, cajero, o));
+
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+   
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      int i = cb_productos.getSelectedIndex();
+        String cajero;
+      String cliente;
+      Productos p;
+      cliente = tf_nombreCliente.getText();
+      cajero = cb_cajero.getSelectedItem().toString();
+    
+     ListOrden.add(new Orden(cajero, cliente));
+     
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tf_nombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nombreClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_nombreClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,6 +327,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox cb_productos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -304,10 +356,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_tiempo;
     // End of variables declaration//GEN-END:variables
 ArrayList<Productos> ListProductos = new ArrayList();
-ArrayList <Cliente> ListCliente = new ArrayList();
-ArrayList <Orden> ListOrden = new ArrayList(); 
-ArrayList <Cajero> ListCajero = new ArrayList();
-
-
+    ArrayList<Cliente> ListCliente = new ArrayList();
+    ArrayList<Orden> ListOrden = new ArrayList();
+    ArrayList<Cajero> ListCajero = new ArrayList();
+    int i = 0;
 
 }
