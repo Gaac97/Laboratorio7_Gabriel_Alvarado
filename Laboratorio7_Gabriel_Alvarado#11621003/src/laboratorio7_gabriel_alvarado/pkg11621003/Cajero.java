@@ -63,6 +63,7 @@ public class Cajero extends Thread {
 
     @Override
     public void run() {
+
         Productos p = new Productos();
         Cliente c = new Cliente();
         mostrar.setVisible(true);
@@ -76,18 +77,23 @@ public class Cajero extends Thread {
         DefaultTableModel modelo = (DefaultTableModel) mostrar.jt_tabla.getModel();
         while (true) {
 
-            for (Orden t1 : ListOrdenes) {
+            for (int i = 0; i < ListOrdenes.size(); i++) {
+                mostrar.NombreCliente.setText(c.getNombre());
+                for (int j = 0; j < ListOrdenes.get(i).ListProductos.size(); j++) {
 
-                Object[] fila = {t1.cajero, t1.cliente, t1.getListProductos()};
-                modelo.addRow(fila);
+                    mostrar.tf_proceso.setText(ListOrdenes.get(i).ListProductos.get(j).getNombre());
+                    try {
+                        Thread.sleep(ListOrdenes.get(i).ListProductos.get(j).getTiempo() * 1000);
+                    } catch (InterruptedException ex) {
+                    }
+                    Object[] newrow = {ListOrdenes.get(i).ListProductos.get(j).getNombre(), ListOrdenes.get(i).ListProductos.get(j).getPrecio(), ListOrdenes.get(i).ListProductos.get(j).getTiempo()};
+                    modelo.addRow(newrow);
+                    mostrar.jt_tabla.setModel(modelo);
+
+                }
 
             }
-            mostrar.jt_tabla.setModel(modelo);
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException ex) {
-                System.out.println(ex);
-            }
+
         }
 
     }
