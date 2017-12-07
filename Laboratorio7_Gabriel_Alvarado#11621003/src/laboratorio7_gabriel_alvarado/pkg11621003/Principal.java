@@ -135,7 +135,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 80, -1));
+        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 80, -1));
 
         jLabel10.setText("Cajero");
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, -1));
@@ -151,7 +151,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 70, -1));
+        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 70, -1));
 
         jLabel11.setText("Edad");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 40, -1));
@@ -171,7 +171,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 120, 40));
 
-        jTabbedPane1.addTab("Ventas", jPanel3);
+        jTabbedPane1.addTab("Crear cliente", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,7 +202,7 @@ public class Principal extends javax.swing.JFrame {
     String id;
     nombre = tf_nombrec.getText();
     id = tf_id.getText();
-    ListCliente.add(new Cliente(nombre, id));
+    ListCajero.add(new Cajero(nombre, id));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -232,8 +232,7 @@ public class Principal extends javax.swing.JFrame {
    nombre = tf_nombreCliente.getText();
     edad = Integer.parseInt(tf_edadCliente.getText());
     Orden o = new Orden(cajero, nombre);
-    ListCliente.add(new Cliente(nombre, cajero))
-    
+    ListCliente.add(new Cliente(nombre, cajero, o));
     
     }//GEN-LAST:event_jButton8ActionPerformed
 

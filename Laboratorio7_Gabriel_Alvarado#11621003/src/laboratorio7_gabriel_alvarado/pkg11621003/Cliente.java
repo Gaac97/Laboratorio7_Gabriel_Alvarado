@@ -16,6 +16,9 @@ public class Cliente {
     public String edad;
     public Orden orden;
 
+    public Cliente() {
+    }
+
     public Cliente(String nombre, String edad, Orden orden) {
         this.nombre = nombre;
         this.edad = edad;
@@ -38,13 +41,15 @@ public class Cliente {
         this.edad = edad;
     }
 
-    public String getOrden() {
+    public Orden getOrden() {
         return orden;
     }
 
-    public void setOrden(String orden) {
+    public void setOrden(Orden orden) {
         this.orden = orden;
     }
+
+  
 
     @Override
     public String toString() {

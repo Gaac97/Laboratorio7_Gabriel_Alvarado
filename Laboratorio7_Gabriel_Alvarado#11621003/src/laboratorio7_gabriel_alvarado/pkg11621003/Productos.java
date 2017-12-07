@@ -14,6 +14,9 @@ public class Productos {
     public int precio;
     public int tiempo;
 
+    public Productos() {
+    }
+
     public Productos(String nombre, int precio, int tiempo) {
         this.nombre = nombre;
         this.precio = precio;
